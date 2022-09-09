@@ -14,19 +14,23 @@ import { MultipleCustomHook } from './examples/MulitpleCustomHooks'
 import { HooksApp } from './HooksApp'
 import './index.css'
 
+// import './08-useReducer/introReducer';
+import { TodoApp } from './08-useReducer/TodoApp'
+
+//     {/* <HooksApp /> */}
+//     {/* <CounterApp className="btn btn-info" /> */}
+//     {/* <CounterWidthCustomHook /> */}
+//     {/* <SimpleForm /> */}
+//     {/* <FormWithCustomHook /> */}
+//     {/* <MultipleCustomHook /> */}
+//     {/* <FocusScreen /> */}
+//     {/* <Layout /> */}
+//     {/* <Memorize /> */}
+//     {/* <MemoHook /> */}
+//     {/* <CallBackHook /> */}
+//     <Padre />
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {/* <HooksApp /> */}
-    {/* <CounterApp className="btn btn-info" /> */}
-    {/* <CounterWidthCustomHook /> */}
-    {/* <SimpleForm /> */}
-    {/* <FormWithCustomHook /> */}
-    {/* <MultipleCustomHook /> */}
-    {/* <FocusScreen /> */}
-    {/* <Layout /> */}
-    {/* <Memorize /> */}
-    {/* <MemoHook /> */}
-    {/* <CallBackHook /> */}
-    <Padre />
-  </React.StrictMode>
+  // <React.StrictMode>
+      <TodoApp />
+  // </React.StrictMode>
 )
