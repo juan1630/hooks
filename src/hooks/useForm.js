@@ -3,20 +3,8 @@ import { useState } from 'react';
 export const useForm = (  initalForm = {} ) => {
     
     const [ formstate, setformstate] = useState(initalForm);
-    /*
-    
-    
-        {
-        username: "juancho",
-        email: "juan@gmail.com",
-        password: "ju"
-    }
-    
-    */
-
 
     const onInputChange = ({target}) => {
-
         const { name, value } = target;
 
         setformstate({ 
