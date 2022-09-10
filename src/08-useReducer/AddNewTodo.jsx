@@ -11,6 +11,7 @@ export const AddNewTodo = ({ handleTodos })=>{
     const handelSubmitTodod  = (event)=> {
         event.preventDefault();
 
+        if(description.length <= 2) return
         handleTodos({
             id: new Date().getTime(),
             description,
