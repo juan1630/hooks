@@ -16,6 +16,8 @@ import './index.css'
 
 // import './08-useReducer/introReducer';
 import { TodoApp } from './08-useReducer/TodoApp'
+import { MainApp } from './09-useContext/main';
+import { BrowserRouter } from 'react-router-dom';
 
 //     {/* <HooksApp /> */}
 //     {/* <CounterApp className="btn btn-info" /> */}
@@ -30,7 +32,10 @@ import { TodoApp } from './08-useReducer/TodoApp'
 //     {/* <CallBackHook /> */}
 //     <Padre />
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-      <TodoApp />
-  // </React.StrictMode>
+  // <TodoApp />
+  <BrowserRouter>
+     {/* <React.StrictMode> */}
+          <MainApp />
+     {/* </React.StrictMode> */}
+    </BrowserRouter>
 )
