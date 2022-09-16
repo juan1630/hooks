@@ -29,11 +29,9 @@ describe('Pruebas en el useForm', ()=>{
 
         const { result } = renderHook(()=> useForm(initialState));
         const { onInputChange, name, formstate } = result.current;
-        act(
-            ()=>{
+        act( ()=>{
                 onInputChange({target: {name : 'name',value: 'juan'}});
-            }            
-        )
+            } );
 
         expect( name ).toBe('juan' );
         expect( formstate.name ).toBe('juan');
