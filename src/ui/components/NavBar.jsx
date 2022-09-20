@@ -1,7 +1,16 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 export const Navbar = () => {
+
+        const naviagte = useNavigate();
+        //custom hooks de react router, se creo para ayudar con la navegacion
+
+    const onLogout = () =>{
+        naviagte('/login');
+    };
+
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2 container-nav">
             
@@ -28,6 +37,13 @@ export const Navbar = () => {
                     >
                         DC
                     </NavLink>
+
+                    <NavLink 
+                        className="nav-item nav-link" 
+                        to="/search"
+                    >
+                        Search
+                    </NavLink>
                 </div>
             </div>
 
@@ -36,7 +52,10 @@ export const Navbar = () => {
                     <span className='nav-item nav-link text-info' >
                         Juan
                     </span>
-                    <button className='nav-item nav-link btn' >
+                    <button 
+                        className='nav-item nav-link btn'
+                        onClick={  onLogout }
+                     >
                         Log out
                     </button>
                 </ul>
