@@ -3,10 +3,13 @@
 ## Hooks
 
 ### UseState 
+    - El hook mas usado en react
 ### UseEffect
 ### UseMemo
+    - use memo se encarga de memorizar valores
 ### UseLayoutEffect
 ### Use Callback
+    - use callback se encarga de memorizar funciones 
 
 
 ## Reducers 
