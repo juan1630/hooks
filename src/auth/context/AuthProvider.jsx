@@ -10,7 +10,9 @@ const initialState ={
 
 
 const init = ()=> {
-    const user = JSON.parse(localStorage.getItem('user'));
+    
+    // console.log(localStorage.getItem('user'));
+    const user = localStorage.getItem('user');
 
     return {
         logged: !!user,
