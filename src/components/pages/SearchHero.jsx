@@ -33,7 +33,7 @@ export const SearchHeroe = ()=>{
             <div className="row">
                 <div className="col-5">
                     <h4> Searching... </h4>
-                    <form  onSubmit={onSearchSubmit} >
+                    <form aria-label="form"  onSubmit={onSearchSubmit} >
                         <input type='text' 
                                 className="form-control mt-4" 
                                 placeholder="Search a hero" 
@@ -58,7 +58,7 @@ export const SearchHeroe = ()=>{
 
                    
                         <div className="alert alert-primary animate__animated animate__fadeIn"  style={{ display:  (showSearch) ? '' : 'none' }} >Search a hero</div>
-                        <div className="alert alert-danger animate__animated animate__fadeIn" style={{ display: (showError) ? '': 'none' }} ><strong>Ther's no hero <b> { q } </b></strong></div> 
+                        <div className="alert alert-danger animate__animated animate__fadeIn" aria-label="alertNoHero" style={{ display: (showError) ? '': 'none' }} ><strong>Ther's no hero <b> { q } </b></strong></div> 
             
                     
                         {
