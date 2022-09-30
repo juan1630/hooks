@@ -105,6 +105,7 @@ describe('Pruebas en el componente seacrhHero', ()=> {
 
                 // console.log( inptuSearche.value )
 
+                console.log(    )
                 expect( mockedUseNavigate ).toHaveBeenCalledWith('?q=superman')
         });
 
