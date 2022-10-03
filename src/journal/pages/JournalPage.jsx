@@ -1,3 +1,10 @@
+import { MailLockOutlined } from "@mui/icons-material"
+import { Typography } from "@mui/material"
+
 export const JournalPage = () => {
-    return (<div>  Journal Page </div>)
+    return (
+        <>
+            <Typography  variant='h1' > Journal App </Typography>
+        </>
+    )
 }
