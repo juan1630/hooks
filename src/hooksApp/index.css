@@ -26,3 +26,10 @@ h1 {
     text-decoration: none;
     color: grey;
 }
+
+
+.card-main {
+    width: 57%;
+    margin-left: 268px;
+    margin-top: 79px;
+}
