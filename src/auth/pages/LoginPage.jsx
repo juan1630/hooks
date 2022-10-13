@@ -1,22 +1,22 @@
 import { Google } from "@mui/icons-material";
-import { Button, Grid, Link, TextField, Typography } from "@mui/material";
+import {Alert, Button, Grid, Link, TextField, Typography} from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom'
 import { AuthLayout } from "../layout/AuthLayout";
 import {useForm} from "../../hooks/useForm.js";
 
-import {checkingAutentication, startLoginCrendetials} from "../../store/auth/thunks.js";
+import {checkingAutentication, startLoginCrendetials, startLoginWithEmailPassword} from "../../store/auth/thunks.js";
 import {useDispatch, useSelector} from "react-redux";
 import {useMemo} from "react";
 
 export const LoginPage = () => {
 
 
-    const {  status  } = useSelector( state =>state.auth );
+    const {  status,errorMessage  } = useSelector( state =>state.auth );
     const dispatch = useDispatch();
 
     const { email, password, onInputChange, formState } = useForm({
-        email: 'juan@gmail.com',
-        password: 'juan123'
+        email: '',
+        password: ''
     });
 
 
@@ -25,11 +25,11 @@ export const LoginPage = () => {
     const onSubmit = ( event ) =>{
         event.preventDefault();
         dispatch(checkingAutentication());
+        dispatch(startLoginWithEmailPassword({ email, password }));
     }
 
 
     const onGoogleSignIn = () => {
-        console.log('On google sign in');
 
         dispatch(startLoginCrendetials());
     }
@@ -49,14 +49,19 @@ export const LoginPage = () => {
                             <Grid item xs={ 12 }  sm={ 6 } >
                                 <Button variant='contained' fullWidth  type='submit' disabled={isauthenticating} > Log in</Button>
                             </Grid>
+
                             <Grid item xs={ 12 } sm={ 6 }  >
-                                <Button variant='contained' fullWidth onClick={onGoogleSignIn} disabled={isauthenticating} >
+                                <Button variant='contained' fullWidth onClick={onGoogleSignIn} disabled={isauthenticating}  onSubmit={ onSubmit }  >
                                     <Google />
                                     <Typography sx={{ml:1}} >
                                         Log in
 
                                     </Typography>
                                 </Button>
+                            </Grid>
+
+                            <Grid item xs={12}  display={ (!!errorMessage) ? '' : 'none' } >
+                                <Alert severity='error' > { errorMessage ? errorMessage.code : ''  } </Alert>
                             </Grid>
                         </Grid>
                         <Grid container direction='row' justifyContent='end' >

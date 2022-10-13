@@ -1,7 +1,7 @@
 // the think fucnitons allow us to dispatch async functions
 
 import {checkingCredentials, loggin, logout} from '../auth/authSlice.js';
-import {registerUserWithEmaiAndPassword, signinWithGoogle} from "../../firebase/providers.js";
+import {loginWithEmailPassword, registerUserWithEmaiAndPassword, signinWithGoogle} from "../../firebase/providers.js";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export const checkingAutentication = () => {
@@ -37,5 +37,19 @@ export const startCreatingUserWithEmailPassword  = ({nombre, email, password}) =
         //si todo sale bien se hace el dispatch del log in
 
         if(ok) return dispatch( loggin({ uid, nombre, photoUrl: photoURL, email }));
+    }
+}
+
+
+export const startLoginWithEmailPassword = ({email, password})  => {
+    return async ( dispatch ) => {
+        dispatch( checkingCredentials() );
+        const { ok, uid, displayName,  photoURL, errorMessage } = await loginWithEmailPassword({email, password});
+        console.log(errorMessage)
+
+        if(!ok) return dispatch(logout( errorMessage ));
+
+        if(ok) return  dispatch( loggin({ok, uid, displayName, email, photoURL}));
+
     }
 }
