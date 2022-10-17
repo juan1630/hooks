@@ -1,7 +1,9 @@
 import { TurnedInNot } from "@mui/icons-material";
 import { Drawer, Box, Toolbar, Typography, List, ListItem, ListItemButton, ListItemIcon, Grid, ListItemText } from "@mui/material";
+import {useSelector} from "react-redux";
 
 export const SideBar = ({drawerWith}) => {
+    const { displayName  } = useSelector( state => state.auth );
     return (
         <Box
             component='nav'
@@ -15,7 +17,7 @@ export const SideBar = ({drawerWith}) => {
             >   
 
                 <Toolbar>
-                    <Typography variant="h6" noWrap component='div'>  Juan Patrón </Typography>
+                    <Typography variant="h6" noWrap component='div'>  { displayName.toUpperCase() } </Typography>
                 </Toolbar>
 
                     <List>

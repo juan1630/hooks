@@ -77,3 +77,8 @@ export const loginWithEmailPassword = async ({ email, password }) => {
     }
 
 };
+
+export const logOutFirebase = async() => {
+    // Cierra todos los metodos de inicio de sesion
+    return await FirebaseAuth.signOut();
+}
