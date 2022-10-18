@@ -4,7 +4,8 @@ import { GaleryImages } from "../components/";
 
 export const NoteView = () => {
     return (
-        <Grid                 
+        <Grid        
+            className='animate__animated animate__fadeIn animate__faster'         
             width='80%'
             ml='240px' 
             container 
