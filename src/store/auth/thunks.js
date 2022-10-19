@@ -1,13 +1,13 @@
 // the think fucnitons allow us to dispatch async functions
 
-import {checkingCredentials, loggin, logout} from '../auth/authSlice.js';
+import {checkingCredentials, loggin, logout} from '../auth/authSlice';
+
 import {
     loginWithEmailPassword,
     logOutFirebase,
     registerUserWithEmaiAndPassword,
     signinWithGoogle
 } from "../../firebase/providers.js";
-import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export const checkingAutentication = () => {
     return async ( dispatch  ) => {

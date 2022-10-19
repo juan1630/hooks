@@ -14,7 +14,7 @@ export  const authSlice = createSlice({
     },
     reducers:{
         loggin: (state, { payload})=> {
-            console.log( payload );
+            
             //will be the login method
             state.status = 'authenticated'
             state.uid = payload.uid;
