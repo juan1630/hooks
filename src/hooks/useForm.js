@@ -9,6 +9,11 @@ export const useForm = ( initialForm = {} , formValidations = {} ) => {
             createValidators();
     }, [formState]);
 
+    //comparamos el useEffect 
+    useEffect(()=> {
+        setFormState( initialForm)
+    }, [initialForm])
+
 
     const isFormValid = useMemo(()=> {
         for ( const formValue of Object.keys(formValidation) ){
@@ -39,7 +44,6 @@ export const useForm = ( initialForm = {} , formValidations = {} ) => {
             const [ fn, error = 'Este campo es requerido' ] = formValidations[ formFields ];
 
             formCheckedValues[ formFields+'Valid' ] = fn( formState[ formFields ] )  ? null :  error ;
-            console.log( formCheckedValues );
         }
 
         setFormValidation( formCheckedValues );

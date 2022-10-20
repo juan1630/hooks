@@ -8,16 +8,18 @@ import {checkingAutentication, startLoginCrendetials, startLoginWithEmailPasswor
 import {useDispatch, useSelector} from "react-redux";
 import {useMemo} from "react";
 
-export const LoginPage = () => {
 
+const formData = {
+    email: '',
+    password: ''
+}
+
+export const LoginPage = () => {
 
     const {  status,errorMessage  } = useSelector( state =>state.auth );
     const dispatch = useDispatch();
 
-    const { email, password, onInputChange, formState } = useForm({
-        email: '',
-        password: ''
-    });
+    const { email, password, onInputChange, formState } = useForm(formData);
 
 
     const isauthenticating = useMemo( () => status ===  'checking' ,[status] );
