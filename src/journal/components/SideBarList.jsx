@@ -29,7 +29,7 @@ export const SideBarList = ({title, id,  body, date, imgUrls }) =>{
             </ListItemIcon>
             <Grid container>
                 <ListItemText primary={newTitle}   />
-                <ListItemText secondary='Hola mundo'   />
+                <ListItemText secondary={ body }   />
             </Grid>
         </ListItemButton>
         </ListItem>)
