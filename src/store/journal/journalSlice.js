@@ -17,13 +17,15 @@ export const journalSlice = createSlice({
             state.isSaving = false
         },
         setActiveNote: (state, action) => {
-            state.activeNote = action.payload
+            state.activeNote = action.payload;
+            state.messageSaved = '';
         },
         setNotes : (state, action) => {
             state.notes = action.payload;
         },
         setSavingNotes: ( state, action) => {
             state.isSaving = true;
+            state.messageSaved = '';
         },
         updateNote: ( state, action) => {
             state.isSaving = false;
@@ -35,12 +37,16 @@ export const journalSlice = createSlice({
                 return note;
             });
 
+            state.messageSaved = action.payload.title + 'Nota actualiza!!'
+
         }, 
         deleteNoteById: ( state, action) => {
 
         }
     }
-})  
+});
+
+//TODO: los reducers no deben de disparar funciones de terceros
 
 export const { 
     addNewEmptyNote,
