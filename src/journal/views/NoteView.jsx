@@ -28,7 +28,6 @@ export const NoteView = () => {
     }, [formState]);
 
     const onSubmitNote = ()=> {
-        console.log('submit')
         dispatch( startSavingNote())
     }
 
