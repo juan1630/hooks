@@ -2,20 +2,23 @@ import { useMemo, useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useDispatch, useSelector } from "react-redux";
 
-import { SaveOutlined } from "@mui/icons-material";
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { SaveOutlined, UploadOutlined } from "@mui/icons-material";
+import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import Swal from "sweetalert2";
 
 import { GaleryImages } from "../components/";
 import { setActiveNote } from "../../store/journal/journalSlice";
-import { startSavingNote } from "../../store/journal/thunks";
+import { startLoadingThnukns, startSavingNote } from "../../store/journal/thunks";
+import { useRef } from "react";
 
 export const NoteView = () => {
     
     const dispatch = useDispatch();
+    const fileInputRef = useRef();
 
-    const { activeNote, messageSaved } = useSelector( state => state.journal );
+    const { activeNote, messageSaved, isSaving } = useSelector( state => state.journal );
     const { title, body, date,  onInputChange, formState } = useForm( activeNote );
+
 
     const dateString = useMemo(()=> {
         const newDate = new Date( date );
@@ -40,9 +43,17 @@ export const NoteView = () => {
         dispatch( startSavingNote())
     }
 
+    const onInputFileChange  = ({ target }) => {
+        
+        if( target.files.length === 0  ) return;
+
+        dispatch( startLoadingThnukns( target.files ));
+
+    };
+
     return (
         <Grid        
-            className='animate__animated animate__fadeIn animate__faster'         
+            className='animate__animated animate__fadeIn animate__faster container_main'         
             width='80%'
             ml='240px' 
             container 
@@ -53,6 +64,23 @@ export const NoteView = () => {
             >
             
             <Grid   item>
+
+                <input type='file'  
+                        multiple 
+                        onChange={onInputFileChange} 
+                        disabled={ isSaving }
+                        style={{  display: 'none' }}
+                        ref={ fileInputRef }
+                        />
+
+                <IconButton
+                    color='primary'
+                    onClick={()=>  fileInputRef.current.click()  }
+
+                >
+                    <UploadOutlined />
+                </IconButton>
+
                 <Typography  fontSize={ 39 }  fontWeight='light'  >
                     {dateString}
                 </Typography>
@@ -94,7 +122,7 @@ export const NoteView = () => {
                 />
             </Grid>
 
-            <GaleryImages />
+            <GaleryImages images={ activeNote.imagesUrl } />
 
         </Grid>
     );

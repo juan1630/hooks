@@ -11,7 +11,8 @@
 ### UseLayoutEffect
 ### Use Callback
     - use callback se encarga de memorizar funciones 
-
+## Use ref
+    - El hook useRef se usa para mantener la referencia a los elementos HTML
 
 ## Reducers 
 
@@ -34,6 +35,7 @@
     3. Los cambios solo se hacen con fucniones puras.
 
 ## Componentes basicos de Redux, son:
+
     1- Store (Objecto en donde se guarda el estado de la aplicacion).
     2- Provider, se debe de declarar en el punto mas alto de la aplicacion, para que todos los componentes tenga el acceso al store.
     3- Reducers, se encargan de modificar el estado.
