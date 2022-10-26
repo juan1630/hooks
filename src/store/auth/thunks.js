@@ -1,6 +1,8 @@
 // the think fucnitons allow us to dispatch async functions
 
 import {checkingCredentials, loggin, logout} from '../auth/authSlice';
+import { deleteDoc, doc } from 'firebase/firestore/lite';
+import { clearAllNotes, deleteNoteById } from '../journal/journalSlice';
 
 import {
     loginWithEmailPassword,
@@ -8,6 +10,8 @@ import {
     registerUserWithEmaiAndPassword,
     signinWithGoogle
 } from "../../firebase/providers.js";
+import { FirebaseDB } from '../../firebase/firebaseConfig';
+
 
 export const checkingAutentication = () => {
     return async ( dispatch  ) => {
@@ -66,5 +70,19 @@ export const startLogOut =  () => {
 
         await logOutFirebase();
         dispatch(logout({ errorMessage: null }));
+        dispatch( clearAllNotes());
     }
 }
+
+
+export const startDeletingNote = () => {
+    return async ( dispatch, getState ) => {
+        const { uid } = getState().auth;
+        const { activeNote: note } = getState().journal;
+
+        const docRef = doc( FirebaseDB, + uid+'/journal/notes/'+note.id );
+        await deleteDoc( docRef );
+        
+        dispatch( deleteNoteById( note.id ));
+    }
+};

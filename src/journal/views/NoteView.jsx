@@ -2,7 +2,7 @@ import { useMemo, useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useDispatch, useSelector } from "react-redux";
 
-import { SaveOutlined, UploadOutlined } from "@mui/icons-material";
+import { DeleteOutline, SaveOutlined, UploadOutlined } from "@mui/icons-material";
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import Swal from "sweetalert2";
 
@@ -10,6 +10,7 @@ import { GaleryImages } from "../components/";
 import { setActiveNote } from "../../store/journal/journalSlice";
 import { startLoadingThnukns, startSavingNote } from "../../store/journal/thunks";
 import { useRef } from "react";
+import { startDeletingNote } from "../../store/auth/thunks";
 
 export const NoteView = () => {
     
@@ -49,6 +50,10 @@ export const NoteView = () => {
 
         dispatch( startLoadingThnukns( target.files ));
 
+    };
+
+    const onDelete = () => {
+        dispatch( startDeletingNote());
     };
 
     return (
@@ -120,6 +125,17 @@ export const NoteView = () => {
                     placeholder="Que sucedio hoy?"
                     minRows={5}
                 />
+            </Grid>
+
+            <Grid container justifyContent='end'  >
+                <Button
+                    onClick={onDelete}
+                    sx={{ mt: 2 }}
+                    color='primary'
+                >
+                    <DeleteOutline />
+                    Borrar
+                </Button>
             </Grid>
 
             <GaleryImages images={ activeNote.imagesUrl } />

@@ -8,14 +8,14 @@ import {useState, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {startCreatingUserWithEmailPassword} from "../../store/auth/thunks.js";
 
+const initial = {
+    nombre:'juan',
+    email:'juan@gmail.oom',
+    password: '123456'
+}
 
 export const RegisterPage = ( ) => {
 
-    const initial = {
-        nombre:'juan',
-        email:'juan@gmail.oom',
-        password: '123456'
-    }
 
     const [ formSubmited, setFormSubmited ] = useState(false);
     const dispatch = useDispatch();
@@ -80,8 +80,8 @@ export const RegisterPage = ( ) => {
                   </Grid>
                   <Grid container direction='row' justifyContent='end' >
                         <Typography> ¿Ya tienes una cuenta ?  </Typography>
-                      <Link color="inherit" to="/auth/register" component={ RouterLink }  >
-                          Crear una cuenta 
+                      <Link color="inherit" to="/auth/login" component={ RouterLink }  >
+                          Login 
                       </Link>
                   </Grid>
               </Grid>

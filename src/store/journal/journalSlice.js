@@ -39,14 +39,21 @@ export const journalSlice = createSlice({
 
             state.messageSaved = action.payload.title + 'Nota actualiza!!'
 
-        }, 
+        },
+        clearAllNotes: (state ) =>{
+            state.activeNote=null;
+            state.isSaving = false;
+            state.messageSaved = '';
+            state.notes = [];
+        },
         setPhotoUrl : (state, action) => {
             state.activeNote.imagesUrl = [ ...state.activeNote.imagesUrl,  ...action.payload ];
             state.isSaving = false;
         },
-        deleteNoteById: ( state, action) => {
-
-        }
+        deleteNoteById: ( state, { payload }) => {
+            state.notes = state.notes.filter( note => note.id !== payload );
+            state.activeNote = null;
+        }   
     }
 });
 
@@ -59,5 +66,6 @@ export const {
     setNotes,
     setSavingNotes,
     updateNote,
-    deleteNoteById
+    deleteNoteById,
+    clearAllNotes
  } =  journalSlice.actions;
